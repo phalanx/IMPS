@@ -11,11 +11,13 @@ Along with the note will come a Quill of Pactmaking. Activating the Quill from y
 
 
 The available functions are as follows:
-    [b]Sale:[/b] Sells what's in the chest, placing the profits in the same chest if no profit chest is assigned. By default you recieve 20% of the value of items sold.
+    [b]Sale:[/b] Sells what's in the chest, placing the profits in the same chest if no profit chest is assigned. By default you receive 20% of the value of items sold.
     [b]Trash:[/b] Removes all goods placed in it. No profit is made.
     [b]Profit:[/b] Profits will be placed in this chest. If multiple are assigned, one will be picked at random each time it runs.
 
-The prices you recieve for the items will, by default, scale off your speech skill in the same way it does for selling to merchant NPCs. You will recieve a percentage of this base sell price. The percentage is configurable, but defaults to 20%. Setting it to 100 will give you the same price you'd get from merchants. The only caveat is for enchanted gear. Enchanted gear you will recieve the price of the base item. This is a limitation with Skyrim's engine, but if anyone knows a way around it let me know.
+The prices you receive for the items will, by default, scale off your speech skill in the same way it does for selling to merchant NPCs. You will receive a percentage of this base sell price. The percentage is configurable, but defaults to 20%. Setting it to 100 will give you the same price you'd get from merchants. The only caveat is for enchanted gear. Enchanted gear you will receive the price of the base item. This is a limitation with Skyrim's engine, but if anyone knows a way around it let me know.
+
+Optionally, you may receive Speech xp for items you sell through The Imps. This is disabled by default and is reduced by 50%. This is configurable up to 200%
 [/spoiler]
 
 [center][size=5][b]Installation[/b][/size][/center]
@@ -26,9 +28,9 @@ Simply install with your mod manager of choice. Manual installations will not be
 
 [center][size=5][b]Configuration[/b][/size][/center]
 [spoiler]
-Configuration options are available in an MCM which will autosave and persist between save games. Options are provided for percentage of value recieved, number of items sold at one time, paper requirement, and how often the script runs.
+Configuration options are available in an MCM which will autosave and persist between save games. Most of the options should be self explanatory but let me know if there's anything confusing.
 
-The most unclear part of the MCM is the min and max Barter values. You can probably just leave them alone and you will get vanilla speech scaling for your sell prices. If you have a mod that changes those values, then selling through I.M.P.S will not recieve those changes automatically.
+The most unclear part of the MCM is the min and max Barter values. You can probably just leave them alone and you will get vanilla speech scaling for your sell prices. If you have a mod that changes those values, then selling through I.M.P.S will not receive those changes automatically.
 If you'd like to know more, check [url=https://en.uesp.net/wiki/Skyrim:Speech#Prices]this article[/url] on the wiki.
 
 Additional weighting configuration can be found under /Data/IMPS. See Integration with Other Mods for details.
@@ -43,7 +45,7 @@ This mod does no polling, so is only running when items need to be processed. I 
 
 [center][size=5][b]Integration with Other Mods[/b][/size][/center]
 [spoiler]
-This mod uses JContainers to read configuration files from the /Data/IMPS directory. Additional configuration files here will be automatically detected on game load. You can follow the provided default config as an example. Naming of these files does not matter. You can also provide any form and the player will recieve a number of those forms equal to the value of the items removed from the chest.
+This mod uses JContainers to read configuration files from the /Data/IMPS directory. Additional configuration files here will be automatically detected on game load. You can follow the provided default config as an example. Naming of these files does not matter. You can also provide any form and the player will receive a number of those forms equal to the value of the items removed from the chest.
 
 A configuration for C.O.I.N is provided in the fomod and can also be used as an example. It provides an even chance that any coin type is selected when providing profits and it provides a number of coins equal to the value of items. This means you may end up getting more or less Septims for your items, depending on the value of the coin selected.
 

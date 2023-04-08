@@ -35,7 +35,8 @@ event OnPageDraw()
     AddSliderOptionST("timeBeforeUpdates", "$IMPS_TIMEBEFOREUPDATES", config.timeBeforeUpdate)
     AddToggleOptionST("requirePaper", "$IMPS_REQUIREPAPER", config.requirePaper)
     AddToggleOptionST("grantSpeechXP", "$IMPS_GRANTSPEECHXP", config.grantSpeechXP)
-    AddSliderOptionST("speechXPMult", "$IMPS_SPEECHXPMULT", config.speechXPMult, "{1}")
+    AddSliderOptionST("speechXPPercent", "$IMPS_SPEECHXPPERCENT", config.speechXPPercent)
+    AddToggleOptionST("renameChests", "$IMPS_RENAMECHESTS", config.renameChests)
     SetCursorPosition(1)
     AddHeaderOption("$IMPS_MAIN_HEADER_2")
     AddTextOptionST("Uninstall", "$IMPS_UNINSTALL", none)
@@ -219,18 +220,34 @@ State grantSpeechXP
     EndEvent
 EndState
 
-State speechXPMult
+State speechXPPercent
     Event OnSliderOpenST(string state_id)
-        SetSliderDialogStartValue(config.speechXPMult)
-        SetSliderDialogDefaultValue(0.5)
-        SetSliderDialogInterval(0.1)
-        SetSliderDialogRange(0, 10)
+        SetSliderDialogStartValue(config.speechXPPercent)
+        SetSliderDialogDefaultValue(50)
+        SetSliderDialogInterval(1)
+        SetSliderDialogRange(0, 200)
     EndEvent
     Event OnSliderAcceptST(string state_id, float value)
-        config.speechXPMult = value
-        SetSliderOptionValueST(config.speechXPMult, "{1}")
+        config.speechXPPercent = value as int
+        SetSliderOptionValueST(config.speechXPPercent)
     EndEvent
     Event OnHighlightST(string state_id)
         SetInfoText("$IMPS_SPEECHXPMULT")
+    EndEvent
+EndState
+
+State renameChests
+    Event OnSelectST(string state_id)
+        config.renameChests = !config.renameChests
+        if config.renameChests
+            IMPS_Main.NameAllChests()
+        else
+            IMPS_Main.unNameAllChests()
+        endif
+        SetToggleOptionValueST(config.renameChests)
+    EndEvent
+
+    Event OnHighlightST(string state_id)
+        SetInfoText("$IMPS_RENAMECHESTS_HELP")
     EndEvent
 EndState

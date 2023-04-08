@@ -8,8 +8,9 @@ float Property barterMax = 3.3 Auto Hidden
 float Property barterMin = 2.0 Auto Hidden
 bool Property speechScaling = true Auto Hidden
 bool Property requirePaper = true Auto Hidden
-bool Property grantSpeechXP = true Auto Hidden
-float Property speechXPMult = 0.6 Auto
+bool Property grantSpeechXP = false Auto Hidden
+int Property speechXPPercent = 50 Auto
+bool Property renameChests = true Auto Hidden
 
 int Function GetConfigVersion()
     return 3
@@ -27,6 +28,8 @@ int Function SaveConfig()
     JMap.setInt(jObj, "speechScaling", speechScaling as int)
     JMap.setInt(jObj, "requirePaper", requirePaper as int)
     JMap.setInt(jObj, "grantSpeechXP", grantSpeechXP as int)
+    JMap.setInt(jObj, "speechXPPercent", speechXPPercent)
+    JMap.setInt(jObj, "renameChests", renameChests as int)
     return jObj
 EndFunction
 
@@ -43,5 +46,7 @@ Function LoadConfig(int jObj)
         endif
         if JMap.getInt(jObj, "version") >= 3
             grantSpeechXP = JMap.getInt(jObj, "grantSpeechXP") as bool
+            speechXPPercent = JMap.getInt(jObj, "speechXPPercent")
+            renameChests = JMap.getInt(jObj, "renameChests") as bool
         endif
 EndFunction
