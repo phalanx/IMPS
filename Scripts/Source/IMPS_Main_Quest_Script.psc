@@ -9,6 +9,10 @@ int jcoinArray
 int totalCoinWeight
 Form[] coinTypes
 
+string salePrefix = "Imp's Sale "
+string trashPrefix = "Imp's Trash "
+string profitPrefix = "Imp's Profit "
+
 ObjectReference[] Property saleChests Auto Hidden
 ObjectReference[] Property trashChests Auto Hidden
 ObjectReference[] Property profitChests Auto Hidden
@@ -33,8 +37,9 @@ Function Maintenance()
 EndFunction
 
 Function Uninstall()
-    Jvalue.releaseObjectsWithTag("IMPS")
     UnregisterForUpdateGameTime()
+    UnNameAllChests()
+    Jvalue.releaseObjectsWithTag("IMPS")
     saleChests = new ObjectReference[1]
     trashChests = new ObjectReference[1]
 EndFunction
@@ -44,14 +49,22 @@ Function Log(string text)
 EndFunction
 
 Function addManagedChest(ObjectReference chest, int style)
+    string chestPrefix
     if style == 0
         saleChests = PapyrusUtil.PushObjRef(saleChests, chest)
+        chestPrefix = salePrefix
     elseif style == 1
         trashChests = PapyrusUtil.PushObjRef(trashChests, chest)
+        chestPrefix = trashPrefix
     elseif style == 2
         profitChests = PapyrusUtil.PushObjRef(profitChests, chest)
+        chestPrefix = profitPrefix
     else
         Log("Incorrect button: " + style)
+        return
+    endif
+    if config.renameChests
+        chest.SetDisplayName(chestPrefix + chest.GetBaseObject().GetName())
     endif
     logChestArrays()
 EndFunction
@@ -88,6 +101,9 @@ Function removeManagedChest(ObjectReference chest, int style)
     elseif style == 2
         profitChests = PapyrusUtil.RemoveObjRef(profitChests, chest)
     endif
+    if config.renameChests
+        chest.SetDisplayName(chest.GetBaseObject().GetName())
+    endif
 EndFunction
 
 Function processChest(ObjectReference chest)
@@ -123,7 +139,7 @@ Function processChest(ObjectReference chest)
     float sellDecimal = config.sellPercent / 100.0
 
     if config.grantSpeechXP
-        float xpGain = totalSellValue * 0.36 * config.speechXPMult
+        float xpGain = totalSellValue * 0.36 * (config.speechXPPercent/100)
         Game.AdvanceSkill("Speechcraft", xpGain)
     endif
 
@@ -205,3 +221,49 @@ Function importCoinForms()
     coinTypes = PapyrusUtil.ClearNone(coinTypes)
     Log("Total Weight: " + totalCoinWeight)
 EndFunction
+
+Function UnNameAllChests()
+    int i = 0
+    ObjectReference chest
+    while i < saleChests.Length
+        chest = saleChests[i]
+        chest.SetDisplayName(chest.GetBaseObject().GetName())
+        i += 1
+    endwhile
+    i = 0
+    while i < trashChests.Length
+        chest = trashChests[i]
+        chest.SetDisplayName(chest.GetBaseObject().GetName())
+        i += 1
+    endwhile
+    i = 0
+    while i < profitChests.Length
+        chest = profitChests[i]
+        chest.SetDisplayName(chest.GetBaseObject().GetName())
+        i += 1
+    endwhile
+ 
+endFunction
+
+Function NameAllChests()
+    int i = 0
+    ObjectReference chest
+    while i < saleChests.Length
+        chest = saleChests[i]
+        chest.SetDisplayName(salePrefix + chest.GetBaseObject().GetName())
+        i += 1
+    endwhile
+    i = 0
+    while i < trashChests.Length
+        chest = trashChests[i]
+        chest.SetDisplayName(trashPrefix + chest.GetBaseObject().GetName())
+        i += 1
+    endwhile
+    i = 0
+    while i < profitChests.Length
+        chest = profitChests[i]
+        chest.SetDisplayName(profitPrefix + chest.GetBaseObject().GetName())
+        i += 1
+    endwhile
+ 
+endFunction
