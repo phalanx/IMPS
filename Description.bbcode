@@ -1,0 +1,65 @@
+[center][size=5][b]I.M.P.S. | Imp's Mercantile Pacts of Skyrim[/b][/size][/center]
+Tired of needing to haul your loot to half a dozen merchants across skyrim, because no one of them has enough money to buy it all? Tired of needing to talk to shopkeepers at all? Tired of being locked into a specific housing mod because it has an autosell feature?
+
+Then this mod is for you!
+
+[center][size=5][b]What It Does[/b][/size][/center]
+[spoiler]
+This mod adds an immersive way to assign specific chests certain functions. Upon installing the mod, a courier will show up with a note from a mysterious company known as The Imps. These Imps want nothing more than to buy your goods.
+
+Along with the note will come a Quill of Pactmaking. Activating the Quill from your inventory will consume a roll of paper and craft an Imp's Pact. Place this Pact into any container and you'll be given a choice of functions.
+
+
+The available functions are as follows:
+    [b]Sale:[/b] Sells what's in the chest, placing the profits in the same chest if no profit chest is assigned. By default you recieve 20% of the value of items sold.
+    [b]Trash:[/b] Removes all goods placed in it. No profit is made.
+    [b]Profit:[/b] Profits will be placed in this chest. If multiple are assigned, one will be picked at random each time it runs.
+
+The prices you recieve for the items will, by default, scale off your speech skill in the same way it does for selling to merchant NPCs. You will recieve a percentage of this base sell price. The percentage is configurable, but defaults to 20%. Setting it to 100 will give you the same price you'd get from merchants. The only caveat is for enchanted gear. Enchanted gear you will recieve the price of the base item. This is a limitation with Skyrim's engine, but if anyone knows a way around it let me know.
+[/spoiler]
+
+[center][size=5][b]Installation[/b][/size][/center]
+[spoiler]
+This mod contains a fomod. There's only one choice to make at the moment, but more integrations may be added later.
+Simply install with your mod manager of choice. Manual installations will not be supported.
+[/spoiler]
+
+[center][size=5][b]Configuration[/b][/size][/center]
+[spoiler]
+Configuration options are available in an MCM which will autosave and persist between save games. Options are provided for percentage of value recieved, number of items sold at one time, paper requirement, and how often the script runs.
+
+The most unclear part of the MCM is the min and max Barter values. You can probably just leave them alone and you will get vanilla speech scaling for your sell prices. If you have a mod that changes those values, then selling through I.M.P.S will not recieve those changes automatically.
+If you'd like to know more, check [url=https://en.uesp.net/wiki/Skyrim:Speech#Prices]this article[/url] on the wiki.
+
+Additional weighting configuration can be found under /Data/IMPS. See Integration with Other Mods for details.
+[/spoiler]
+
+[center][size=5][b]Compatibility and Impact[/b][/size][/center]
+[spoiler]
+This mod should be compatible with anything, as it does not modify vanilla records at all and does not rely on vanilla records. There may be conflict if another mod runs scripts to remove items from a chest at the same time this mod's script is running.This mod also does not attach scripts to any in game objects.
+
+This mod does no polling, so is only running when items need to be processed. I don't foresee there being much load impact on the game, but you can minimize it by setting the min and max items sold to a reasonable value.
+[/spoiler]
+
+[center][size=5][b]Integration with Other Mods[/b][/size][/center]
+[spoiler]
+This mod uses JContainers to read configuration files from the /Data/IMPS directory. Additional configuration files here will be automatically detected on game load. You can follow the provided default config as an example. Naming of these files does not matter. You can also provide any form and the player will recieve a number of those forms equal to the value of the items removed from the chest.
+
+A configuration for C.O.I.N is provided in the fomod and can also be used as an example. It provides an even chance that any coin type is selected when providing profits and it provides a number of coins equal to the value of items. This means you may end up getting more or less Septims for your items, depending on the value of the coin selected.
+
+The provided configurations assume that a weight of 10 is an even chance to be placed. So if you want a certain form to be twice as likely, you should set its weight to 20 or 5 if you want it to be half as likely.
+[/spoiler]
+
+[center][size=5][b]Feedback and Bug Reports[/b][/size][/center]
+[spoiler]
+Please don’t hesitate to post your comments, feature requests, bug reports, questions, encouragements, or anything else. I promise I won’t throw a tantrum and delist the mod. All I ask is that you be polite, respectful, and recognize that I don’t have infinite free time to work on mods or monitor forums.
+[/spoiler]
+
+[center][size=5][b]Suggested Mods[/b][/size][/center]
+[spoiler]
+[url=https://www.nexusmods.com/skyrimspecialedition/mods/8224/] Automatic Item Storage [/url] Nice little mod that does autostorage and workstation linking in a similar manner as this mod.
+[url=https://www.nexusmods.com/skyrimspecialedition/mods/42387] Automatic Item Storage - Improved Custom Lists[/url] Improvements for the above mod
+[url=https://www.nexusmods.com/skyrimspecialedition/mods/51439] C.O.I.N. [/url] Adds new coinage and I provide an integration config for it. The Imps don't really understand the difference in coins though, sometimes to your benefit sometimes not.
+
+Any other mods you think pair well with this one? Let me know and I may add them.
+[/spoiler]
