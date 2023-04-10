@@ -34,6 +34,7 @@ Function Maintenance()
     RegisterForModEvent("IMPS_GameLoad", "Maintenance")
     RegisterForSingleUpdateGameTime(config.timeBeforeUpdate)
     importCoinForms()
+    NameAllChests()
 EndFunction
 
 Function Uninstall()
