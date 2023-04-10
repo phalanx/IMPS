@@ -34,7 +34,9 @@ Function Maintenance()
     RegisterForModEvent("IMPS_GameLoad", "Maintenance")
     RegisterForSingleUpdateGameTime(config.timeBeforeUpdate)
     importCoinForms()
-    NameAllChests()
+    if config.renameChests
+        NameAllChests()
+    endif
 EndFunction
 
 Function Uninstall()
@@ -154,7 +156,7 @@ Function processChest(ObjectReference chest)
         endif
     endif
 
-    if totalSellValue > 0.5 && totalSellValue < 1
+    if totalSellValue > 0.0 && totalSellValue < 1
         totalSellValue = 1
     endif
     Log("Total Sell Value: " + totalSellValue)
