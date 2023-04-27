@@ -232,7 +232,7 @@ State speechXPPercent
         SetSliderOptionValueST(config.speechXPPercent)
     EndEvent
     Event OnHighlightST(string state_id)
-        SetInfoText("$IMPS_SPEECHXPMULT")
+        SetInfoText("$IMPS_SPEECHXPPERCENT_HELP")
     EndEvent
 EndState
 

@@ -34,6 +34,9 @@ Function Maintenance()
     RegisterForModEvent("IMPS_GameLoad", "Maintenance")
     RegisterForSingleUpdateGameTime(config.timeBeforeUpdate)
     importCoinForms()
+    if config.renameChests
+        NameAllChests()
+    endif
 EndFunction
 
 Function Uninstall()
@@ -130,16 +133,19 @@ Function processChest(ObjectReference chest)
     endwhile
 
     float playerSpeech = playerRef.GetActorValue("Speechcraft")
-    if playerSpeech > 100
-        playerSpeech = 100
+    if playerSpeech > 100.0
+        playerSpeech = 100.0
     endif
 
-    float priceFactor = 1/(config.barterMax - ((config.barterMax - config.barterMin) * playerSpeech/100))
+    float priceFactor = 1/(config.barterMax - ((config.barterMax - config.barterMin) * playerSpeech/100.0))
    
     float sellDecimal = config.sellPercent / 100.0
 
     if config.grantSpeechXP
-        float xpGain = totalSellValue * 0.36 * (config.speechXPPercent/100)
+        float xpGain = totalSellValue * 0.36 * (config.speechXPPercent/100.0)
+        if xpGain < 1 && xpGain > 0
+            xpGain = 1
+        endif
         Game.AdvanceSkill("Speechcraft", xpGain)
     endif
 
@@ -153,7 +159,7 @@ Function processChest(ObjectReference chest)
         endif
     endif
 
-    if totalSellValue > 0.5 && totalSellValue < 1
+    if totalSellValue > 0.0 && totalSellValue < 1
         totalSellValue = 1
     endif
     Log("Total Sell Value: " + totalSellValue)
